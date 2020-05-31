@@ -8,6 +8,11 @@ cc.Class({
             type: cc.Prefab
         },
 
+        redPointPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+
         ground: {
             default: null,
             type: cc.Node
@@ -31,9 +36,16 @@ cc.Class({
         return Math.floor(rand);
     },
 
+    spawnRedPoint() {
+        return cc.instantiate(this.redPointPrefab);
+    },
+
     spawnNewGround() {
         const newGround = cc.instantiate(this.newGroundPrefab);
         this.node.addChild(newGround);
+        const newRedPoint = this.spawnRedPoint();
+        newGround.addChild(newRedPoint);
+        newRedPoint.y = this.ground.height / 2 - newRedPoint.height / 2;
         const minWidthNewGround = 30;
         const maxWidthNewGround = this.ground.width;
         newGround.width = this.randomInteger(minWidthNewGround, maxWidthNewGround);
