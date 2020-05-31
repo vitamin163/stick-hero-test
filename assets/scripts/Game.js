@@ -13,6 +13,11 @@ cc.Class({
             type: cc.Prefab
         },
 
+        stickPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+
         ground: {
             default: null,
             type: cc.Node
@@ -29,6 +34,7 @@ cc.Class({
     onLoad() {
         this.newGroundWidth = this.newGroundPrefab.data.width;
         this.spawnNewGround();
+        this.spawnStick();
     },
 
     randomInteger(min, max) {
@@ -38,6 +44,16 @@ cc.Class({
 
     spawnRedPoint() {
         return cc.instantiate(this.redPointPrefab);
+    },
+
+    spawnStick() {
+        const newStick = cc.instantiate(this.stickPrefab);
+        this.node.addChild(newStick);
+        newStick.anchorY = 0;
+        newStick.height = 0;
+        newStick.width = 6;
+
+        return newStick;
     },
 
     spawnNewGround() {
