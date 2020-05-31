@@ -17,7 +17,7 @@
         "__id__": 2
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -84,10 +84,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 12
       },
       {
-        "__id__": 12
+        "__id__": 13
+      },
+      {
+        "__id__": 14
       }
     ],
     "_prefab": null,
@@ -177,7 +180,7 @@
       "array": [
         0,
         0,
-        247.88896237314702,
+        300.2618275238126,
         0,
         0,
         0,
@@ -436,6 +439,9 @@
     "_components": [
       {
         "__id__": 10
+      },
+      {
+        "__id__": 11
       }
     ],
     "_prefab": null,
@@ -455,14 +461,14 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
         -281.027,
-        -322.029,
+        -364.553,
         0,
         0,
         0,
@@ -519,6 +525,21 @@
     "_id": "b9jU6cSHVDSIVwFjHy0ozh"
   },
   {
+    "__type__": "430e07wtqJIHJT/OxFlj0Yj",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 9
+    },
+    "_enabled": true,
+    "jumpHeight": 200,
+    "jumpDuration": 0.3,
+    "maxMoveSpeed": 400,
+    "accel": 350,
+    "jumpAudio": null,
+    "_id": "1dBMBTJWhEHKoJuvhePFrJ"
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -561,5 +582,26 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "29zXboiXFBKoIV4PQ2liTe"
+  },
+  {
+    "__type__": "060eccP2o9PwYEnb4pvEUjk",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "newGroundPrefab": {
+      "__uuid__": "deec15c8-31e0-4e35-9e37-3db6e561352a"
+    },
+    "maxStarDuration": 0,
+    "minStarDuration": 0,
+    "ground": {
+      "__id__": 7
+    },
+    "player": {
+      "__id__": 9
+    },
+    "_id": "77Ta71XchH96Qkn1PISDvo"
   }
 ]
