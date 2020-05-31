@@ -26,16 +26,20 @@ cc.Class({
         this.spawnNewGround();
     },
 
-    spawnNewGround() {
-        const newGround = cc.instantiate(this.newGroundPrefab);
-        this.node.addChild(newGround);
-        newGround.setPosition(this.getNewGroundPosition());
-    },
-
     randomInteger(min, max) {
         const rand = min + Math.random() * (max + 1 - min);
         return Math.floor(rand);
     },
+
+    spawnNewGround() {
+        const newGround = cc.instantiate(this.newGroundPrefab);
+        this.node.addChild(newGround);
+        const minWidthNewGround = 30;
+        const maxWidthNewGround = this.ground.width;
+        newGround.width = this.randomInteger(minWidthNewGround, maxWidthNewGround);
+        newGround.setPosition(this.getNewGroundPosition());
+    },
+
 
     getNewGroundPosition() {
         const groundY = this.ground.y;
