@@ -16,7 +16,7 @@ cc.Class({
         },
     },
 
-    setJumpAction: function () {
+    /*setJumpAction: function () {
 
         var jumpUp = cc.moveBy(this.jumpDuration, cc.v2(0, this.jumpHeight)).easing(cc.easeCubicActionOut());
 
@@ -91,5 +91,5 @@ cc.Class({
         }
 
         this.node.x += this.xSpeed * dt;
-    },
+    },*/
 });

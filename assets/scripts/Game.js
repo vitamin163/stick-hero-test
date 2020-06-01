@@ -35,6 +35,10 @@ cc.Class({
         this.newGroundWidth = this.newGroundPrefab.data.width;
         this.spawnNewGround();
         this.spawnStick();
+
+        const manager = cc.director.getCollisionManager();
+        manager.enabled = true;
+
     },
 
     randomInteger(min, max) {
@@ -52,7 +56,8 @@ cc.Class({
         newStick.anchorY = 0;
         newStick.height = 0;
         newStick.width = 6;
-
+        newStick.y = this.ground.y + this.ground.height / 2;
+        newStick.x = -this.node.width / 2 + this.ground.width;
         return newStick;
     },
 
@@ -66,6 +71,7 @@ cc.Class({
         const maxWidthNewGround = this.ground.width;
         newGround.width = this.randomInteger(minWidthNewGround, maxWidthNewGround);
         newGround.setPosition(this.getNewGroundPosition());
+        //newGround.getComponent('NewGround').game = this;
     },
 
 
