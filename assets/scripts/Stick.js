@@ -2,14 +2,11 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        touchStart: false,
-        touchEnd: false,
         stick: null,
         scene: null,
         height: 0,
     },
 
-    // LIFE-CYCLE CALLBACKS:
 
 
     onLoad() {
@@ -20,11 +17,8 @@ cc.Class({
     },
 
     onCollisionEnter(other, self) {
-        console.log("Currently colliding");
-    },
-
-    onCollisionExit(other, self) {
-        console.log("Done colliding");
+        this.game.isMoving = true;
+        this.game.collision = true;
     },
 
 
@@ -34,33 +28,35 @@ cc.Class({
     },
 
     onTouchStart() {
-        this.touchStart = true;
-        this.touchEnd = false;
+        this.game.touchStart = true;
+        this.game.touchEnd = false;
     },
 
     onTouchEnd() {
-        this.touchStart = false;
-        this.touchEnd = true;
-        this.setOffsetCollider();
+        this.game.touchStart = false;
+        this.game.touchEnd = true;
     },
 
     rotationStick() {
         this.scene.off(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
-        this.stick.angle -= 1;
+        this.stick.angle -= 5;
+
     },
 
     setOffsetCollider() {
         this.stick.getComponent(cc.BoxCollider).offset.y = this.height;
     },
 
-    //start() {   },
+    //start() {},
 
     update(dt) {
-        if (this.touchStart) {
-            this.height += 1;
+        if (this.game.touchStart) {
+            this.height += 5;
             this.stick.height = this.height;
-        } else if (this.touchEnd && this.stick.angle !== -90) {
+            this.setOffsetCollider();
+        } else if (this.game.touchEnd && this.stick.angle !== -90) {
             this.rotationStick();
         }
     },
 });
+

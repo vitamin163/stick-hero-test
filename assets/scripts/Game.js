@@ -26,7 +26,12 @@ cc.Class({
         player: {
             default: null,
             type: cc.Node
-        }
+        },
+        destination: 'none',
+        isMoving: false,
+        touchStart: false,
+        touchEnd: false,
+        collision: false,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -35,10 +40,11 @@ cc.Class({
         this.newGroundWidth = this.newGroundPrefab.data.width;
         this.spawnNewGround();
         this.spawnStick();
-
         const manager = cc.director.getCollisionManager();
         manager.enabled = true;
-
+        manager.enabledDebugDraw = true;
+        manager.enabledDrawBoundingBox = true;
+        this.player.getComponent('Player').game = this;
     },
 
     randomInteger(min, max) {
@@ -58,6 +64,7 @@ cc.Class({
         newStick.width = 6;
         newStick.y = this.ground.y + this.ground.height / 2;
         newStick.x = -this.node.width / 2 + this.ground.width;
+        newStick.getComponent('Stick').game = this;
         return newStick;
     },
 
@@ -71,7 +78,8 @@ cc.Class({
         const maxWidthNewGround = this.ground.width;
         newGround.width = this.randomInteger(minWidthNewGround, maxWidthNewGround);
         newGround.setPosition(this.getNewGroundPosition());
-        //newGround.getComponent('NewGround').game = this;
+        this.destination = (newGround.x + newGround.width / 2) - 20;
+        newGround.getComponent(cc.BoxCollider).size.width = newGround.width;
     },
 
 
@@ -83,9 +91,13 @@ cc.Class({
         return cc.v2(randX, groundY);
     },
 
+
+
     start() {
 
     },
 
-    // update (dt) {},
+    update(dt) {
+
+    },
 });

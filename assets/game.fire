@@ -180,7 +180,7 @@
       "array": [
         0,
         0,
-        333.71492572411483,
+        326.59983040220646,
         0,
         0,
         0,
@@ -537,6 +537,7 @@
     "maxMoveSpeed": 400,
     "accel": 350,
     "jumpAudio": null,
+    "destination": "none",
     "_id": "1dBMBTJWhEHKoJuvhePFrJ"
   },
   {
@@ -606,6 +607,13 @@
     "player": {
       "__id__": 9
     },
+    "destination": "none",
+    "isMoving": false,
+    "touchStart": false,
+    "touchEnd": false,
+    "height": 0,
+    "collision": false,
+    "stickProto": null,
     "_id": "77Ta71XchH96Qkn1PISDvo"
   }
 ]

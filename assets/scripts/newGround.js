@@ -10,12 +10,9 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.setWidthCollider();
+
     },
 
-    setWidthCollider() {
-        this.node.getComponent(cc.BoxCollider).size.width = this.node.width;
-    },
 
     start() {
 
