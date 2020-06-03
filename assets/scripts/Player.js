@@ -28,7 +28,7 @@ cc.Class({
 
     //onDestroy() {},
 
-    update: function (dt) {
+    /*update: function (dt) {
         this.destination = this.game.destination - 4;
         if (this.game.isMoving) {
             this.movePlayer();
@@ -37,5 +37,5 @@ cc.Class({
             this.game.isMoving = false;
         }
 
-    }
+    } */
 });
