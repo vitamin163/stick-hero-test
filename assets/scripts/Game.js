@@ -47,7 +47,6 @@ cc.Class({
 
     onLoad() {
         this.stick = this.spawnStick();
-        //this.newGroundWidth = this.newGroundPrefab.data.width;
         this.newGround = this.spawnNewGround();
         this.player.getComponent('Player').game = this;
         this.score = 0;
@@ -70,9 +69,12 @@ cc.Class({
         this.touchEnd = true;
         if (this.calculateCollision()) {
             this.successAction();
+        } else {
+            this.failAction();
         }
 
     },
+
 
     gainScore: function () {
         this.scoreDisplay.string = 'Score: ' + this.score;
@@ -94,20 +96,6 @@ cc.Class({
         return isCollision;
     },
 
-    rotationStick() {
-
-        //const action = cc.rotateTo(0.5, 90.0);
-        //this.stick.runAction(action);
-        //cc.tween(this.stick).to(1, { rotation: 90 }).start()
-    },
-
-    moveHero(destination) {
-        //const action = cc.speed(cc.moveTo(2, cc.v2(destination, this.stick.y)), 2);
-        //this.player.runAction(action);
-        //cc.tween(this.player).to(1, { position: cc.v2(destination, this.stick.y) }).start()
-    },
-
-
     successAction() {
         cc.tween(this.stick).to(0.5, { rotation: 90 })
             .call(() => {
@@ -119,7 +107,7 @@ cc.Class({
                     })
                     .call(() => {
                         cc.tween(this.player)
-                            .to(1, { position: cc.v2(this.startPosition, this.stick.y) })
+                            .to(1, { position: cc.v2((this.startPosition + this.newGround.width / 2) - 20, this.stick.y) })
                             .start()
                     })
                     .call(() => {
@@ -145,9 +133,26 @@ cc.Class({
 
                     .start()
             })
-
             .call(() => this.gainScore()).start()
             .start();
+
+    },
+
+    failAction() {
+        cc.tween(this.stick).to(0.5, { rotation: 90 })
+            .call(() => {
+                cc.tween(this.player).to(1, { position: cc.v2(this.player.x + this.stick.height, this.stick.y) })
+                    .call(() => { cc.tween(this.stick).to(0.5, { rotation: 180 }).start() })
+                    .call(() => {
+                        cc.tween(this.player).by(0.5, { position: cc.v2(0, -350) })
+                            .delay(1).call(() => cc.director.loadScene('game')).start()
+                    })
+
+                    .start()
+            })
+
+            .start();
+
 
     },
 
@@ -164,9 +169,7 @@ cc.Class({
         const newStick = cc.instantiate(this.stickPrefab);
         this.node.addChild(newStick);
         newStick.anchorY = 0;
-
         newStick.y = this.ground.y + this.ground.height / 2;
-
         newStick.x = this.startPosition + this.ground.width / 2;
         newStick.getComponent('Stick').game = this;
         return newStick;

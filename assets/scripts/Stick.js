@@ -5,21 +5,9 @@ cc.Class({
 
     },
 
-    //onLoad() {
-
-    //},
-
-    //onCollisionEnter(other, self) {
-    //this.game.isMoving = true;
-    //this.game.collision = true;
-    //console.log('colission')
-    //},
+    //onLoad() {},
 
 
-
-    //setOffsetCollider() {
-    ///this.getComponent(cc.BoxCollider).offset.y = this.node.height;
-    //},
 
     //start() {},
 
@@ -27,7 +15,6 @@ cc.Class({
 
         if (this.game.touchStart) {
             this.node.height += 2;
-            //this.setOffsetCollider();
         }
     },
 });
