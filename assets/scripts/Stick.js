@@ -24,8 +24,9 @@ cc.Class({
     //start() {},
 
     update(dt) {
+
         if (this.game.touchStart) {
-            this.node.height += 5;
+            this.node.height += 2;
             //this.setOffsetCollider();
         }
     },
