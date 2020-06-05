@@ -1,6 +1,6 @@
 
 (function () {
-var scripts = [{"deps":{"./assets/scripts/Game":1,"./assets/migration/use_v2.0.x_cc.Toggle_event":2,"./assets/scripts/Player":3,"./assets/scripts/RedPoint":4,"./assets/scripts/Stick":5,"./assets/scripts/NewGround":6},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/scripts/Game.js"},{"deps":{},"path":"preview-scripts/assets/migration/use_v2.0.x_cc.Toggle_event.js"},{"deps":{},"path":"preview-scripts/assets/scripts/Player.js"},{"deps":{},"path":"preview-scripts/assets/scripts/RedPoint.js"},{"deps":{},"path":"preview-scripts/assets/scripts/Stick.js"},{"deps":{},"path":"preview-scripts/assets/scripts/NewGround.js"}];
+var scripts = [{"deps":{"./assets/scripts/RedPoint":1,"./assets/scripts/Game":2,"./assets/migration/use_v2.0.x_cc.Toggle_event":3,"./assets/scripts/Stick":4,"./assets/scripts/Player":5,"./assets/scripts/NewGround":6},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/scripts/RedPoint.js"},{"deps":{},"path":"preview-scripts/assets/scripts/Game.js"},{"deps":{},"path":"preview-scripts/assets/migration/use_v2.0.x_cc.Toggle_event.js"},{"deps":{},"path":"preview-scripts/assets/scripts/Stick.js"},{"deps":{},"path":"preview-scripts/assets/scripts/Player.js"},{"deps":{},"path":"preview-scripts/assets/scripts/NewGround.js"}];
 var entries = ["preview-scripts/__qc_index__.js"];
 var bundleScript = 'preview-scripts/__qc_bundle__.js';
 

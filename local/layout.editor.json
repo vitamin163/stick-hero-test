@@ -107,9 +107,24 @@
       ]
     }
   },
-  "panels": {},
-  "panelLabelWidth": {
-    "inspector": null
+  "panels": {
+    "builder": {
+      "x": 508,
+      "y": 28,
+      "width": 516,
+      "height": 740
+    },
+    "project-settings": {
+      "x": 476,
+      "y": 128,
+      "width": 603,
+      "height": 567
+    }
   },
-  "panelLabelWidth.inspector": null
+  "panelLabelWidth": {
+    "inspector": null,
+    "builder": null
+  },
+  "panelLabelWidth.inspector": null,
+  "panelLabelWidth.builder": null
 }
