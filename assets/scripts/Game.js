@@ -90,7 +90,7 @@ cc.Class({
         const startCollisionPoint = this.newGround.x - this.newGround.width / 2;
         const endCollisionPoint = this.newGround.x + this.newGround.width / 2;
         const startCollisionRedPoint = this.newGround.x - this.redPointPrefab.data.width / 2;
-        const endCollisionRedPoint = this.newGround.x + this.redPointPrefab.data.width / 2;
+        const endCollisionRedPoint = this.newGround.x + this.redPointPrefab.data.width / 2
         const destination = this.stick.x + this.stick.height;
         const isCollision = destination >= startCollisionPoint && destination <= endCollisionPoint;
         const isPerfect = destination >= startCollisionRedPoint && destination <= endCollisionRedPoint;

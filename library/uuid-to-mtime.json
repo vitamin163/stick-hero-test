@@ -490,8 +490,8 @@
     "relativePath": "migration\\use_v2.0.x_cc.Toggle_event.js"
   },
   "07ae3cd5-7fa1-4f25-8372-63adeab8800e": {
-    "asset": 1591359012601,
-    "meta": 1591359012609,
+    "asset": 1591363279541,
+    "meta": 1591363279549,
     "relativePath": "game.fire"
   },
   "7e784ca4-15f2-4a7e-89d4-c2d4b94e1c8a": {
@@ -570,8 +570,8 @@
     "relativePath": "scripts\\Stick.js"
   },
   "060ec70f-da8f-4fc1-8127-6f8a6f1148e4": {
-    "asset": 1591360475726,
-    "meta": 1591360479969,
+    "asset": 1591362300060,
+    "meta": 1591362904284,
     "relativePath": "scripts\\Game.js"
   }
 }
