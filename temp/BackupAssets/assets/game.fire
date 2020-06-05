@@ -535,12 +535,6 @@
       "__id__": 9
     },
     "_enabled": true,
-    "jumpHeight": 200,
-    "jumpDuration": 0.3,
-    "maxMoveSpeed": 400,
-    "accel": 350,
-    "jumpAudio": null,
-    "destination": "none",
     "_id": "1dBMBTJWhEHKoJuvhePFrJ"
   },
   {

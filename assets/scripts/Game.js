@@ -1,5 +1,3 @@
-var async = require("async");
-
 cc.Class({
     extends: cc.Component,
 
@@ -75,8 +73,7 @@ cc.Class({
 
     },
 
-
-    gainScore: function () {
+    setScore: function () {
         this.scoreDisplay.string = 'Score: ' + this.score;
     },
 
@@ -96,28 +93,35 @@ cc.Class({
         return isCollision;
     },
 
+    getTime(distance, speed = 500) {
+        return distance / speed;
+    },
+
     successAction() {
-        cc.tween(this.stick).to(0.5, { rotation: 90 })
+        const playerMoveTime = this.getTime(this.playerDestination - this.player.x);
+        const stickComebackTime = this.getTime((this.newGround.x - this.stick.x) + this.newGround.width / 2);
+        const comebackTime = this.getTime(this.newGround.x - this.startPosition);
+        cc.tween(this.stick).delay(0.3).to(0.4, { angle: -90 })
             .call(() => {
-                cc.tween(this.player).to(1, { position: cc.v2(this.playerDestination, this.stick.y) })
+                cc.tween(this.player).to(playerMoveTime, { position: cc.v2(this.playerDestination, this.stick.y) })
                     .call(() => {
                         cc.tween(this.newGround)
-                            .to(1, { position: cc.v2(this.startPosition, this.ground.y) })
+                            .to(comebackTime, { position: cc.v2(this.startPosition, this.ground.y) })
                             .start()
                     })
                     .call(() => {
                         cc.tween(this.player)
-                            .to(1, { position: cc.v2((this.startPosition + this.newGround.width / 2) - 20, this.stick.y) })
+                            .to(comebackTime, { position: cc.v2((this.startPosition + this.newGround.width / 2) - 20, this.stick.y) })
                             .start()
                     })
                     .call(() => {
                         cc.tween(this.stick)
-                            .to(1, { position: cc.v2(this.startPosition - this.stick.height, this.stick.y) })
+                            .to(stickComebackTime, { position: cc.v2(this.stick.x - (this.newGround.x - this.stick.x + this.newGround.width / 2), this.stick.y) })
                             .start()
                     })
                     .call(() => {
                         cc.tween(this.ground)
-                            .to(1, { position: cc.v2(-800, this.ground.y) })
+                            .to(comebackTime, { position: cc.v2(-800, this.ground.y) })
                             .call(() => this.ground.destroy())
                             .call(() => this.ground = this.newGround)
                             .call(() => {
@@ -129,31 +133,27 @@ cc.Class({
                             })
                             .start()
                     })
-
-
                     .start()
             })
-            .call(() => this.gainScore()).start()
+            .call(() => this.setScore()).start()
             .start();
 
     },
 
     failAction() {
-        cc.tween(this.stick).to(0.5, { rotation: 90 })
+        const playerMoveTime = this.getTime(this.stick.height);
+        cc.tween(this.stick).delay(0.3).to(0.4, { angle: -90 })
             .call(() => {
-                cc.tween(this.player).to(1, { position: cc.v2(this.player.x + this.stick.height, this.stick.y) })
-                    .call(() => { cc.tween(this.stick).to(0.5, { rotation: 180 }).start() })
+                cc.tween(this.player).to(playerMoveTime, { position: cc.v2(this.player.x + this.stick.height, this.stick.y) })
+                    .call(() => { cc.tween(this.stick).to(0.4, { angle: -180 }).start() })
                     .call(() => {
-                        cc.tween(this.player).by(0.5, { position: cc.v2(0, -350) })
+                        cc.tween(this.player).by(0.3, { position: cc.v2(0, -350) })
                             .delay(1).call(() => cc.director.loadScene('game')).start()
                     })
 
                     .start()
             })
-
             .start();
-
-
     },
 
     randomInteger(min, max) {
@@ -177,15 +177,19 @@ cc.Class({
 
     spawnNewGround() {
         const newGround = cc.instantiate(this.newGroundPrefab);
+        newGround.x = 500;
+        newGround.y = this.ground.y;
         this.node.addChild(newGround);
         const newRedPoint = this.spawnRedPoint();
         newGround.addChild(newRedPoint);
         newRedPoint.y = this.ground.height / 2 - newRedPoint.height / 2;
         const minWidthNewGround = 30;
         const maxWidthNewGround = 150;
+        const newGroundPos = this.getNewGroundPosition(newGround.width);
         newGround.width = this.randomInteger(minWidthNewGround, maxWidthNewGround);
-        newGround.setPosition(this.getNewGroundPosition(newGround.width));
-        this.playerDestination = (newGround.x + newGround.width / 2) - 20;
+        this.playerDestination = (newGroundPos.x + newGround.width / 2) - 20;
+        const time = this.getTime(newGround.x - newGroundPos.x, 1000);
+        cc.tween(newGround).to(time, { position: newGroundPos }).start()
         return newGround;
     },
 

@@ -4,8 +4,6 @@ cc._RF.push(module, '060eccP2o9PwYEnb4pvEUjk', 'Game');
 
 "use strict";
 
-var async = require("async");
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -68,7 +66,7 @@ cc.Class({
       this.failAction();
     }
   },
-  gainScore: function gainScore() {
+  setScore: function setScore() {
     this.scoreDisplay.string = 'Score: ' + this.score;
   },
   calculateCollision: function calculateCollision() {
@@ -88,28 +86,35 @@ cc.Class({
 
     return isCollision;
   },
+  getTime: function getTime(distance) {
+    var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+    return distance / speed;
+  },
   successAction: function successAction() {
     var _this = this;
 
-    cc.tween(this.stick).to(0.5, {
-      rotation: 90
+    var playerMoveTime = this.getTime(this.playerDestination - this.player.x);
+    var stickComebackTime = this.getTime(this.newGround.x - this.stick.x + this.newGround.width / 2);
+    var comebackTime = this.getTime(this.newGround.x - this.startPosition);
+    cc.tween(this.stick).delay(0.3).to(0.4, {
+      angle: -90
     }).call(function () {
-      cc.tween(_this.player).to(1, {
+      cc.tween(_this.player).to(playerMoveTime, {
         position: cc.v2(_this.playerDestination, _this.stick.y)
       }).call(function () {
-        cc.tween(_this.newGround).to(1, {
+        cc.tween(_this.newGround).to(comebackTime, {
           position: cc.v2(_this.startPosition, _this.ground.y)
         }).start();
       }).call(function () {
-        cc.tween(_this.player).to(1, {
+        cc.tween(_this.player).to(comebackTime, {
           position: cc.v2(_this.startPosition + _this.newGround.width / 2 - 20, _this.stick.y)
         }).start();
       }).call(function () {
-        cc.tween(_this.stick).to(1, {
-          position: cc.v2(_this.startPosition - _this.stick.height, _this.stick.y)
+        cc.tween(_this.stick).to(stickComebackTime, {
+          position: cc.v2(_this.stick.x - (_this.newGround.x - _this.stick.x + _this.newGround.width / 2), _this.stick.y)
         }).start();
       }).call(function () {
-        cc.tween(_this.ground).to(1, {
+        cc.tween(_this.ground).to(comebackTime, {
           position: cc.v2(-800, _this.ground.y)
         }).call(function () {
           return _this.ground.destroy();
@@ -126,23 +131,24 @@ cc.Class({
         }).start();
       }).start();
     }).call(function () {
-      return _this.gainScore();
+      return _this.setScore();
     }).start().start();
   },
   failAction: function failAction() {
     var _this2 = this;
 
-    cc.tween(this.stick).to(0.5, {
-      rotation: 90
+    var playerMoveTime = this.getTime(this.stick.height);
+    cc.tween(this.stick).delay(0.3).to(0.4, {
+      angle: -90
     }).call(function () {
-      cc.tween(_this2.player).to(1, {
+      cc.tween(_this2.player).to(playerMoveTime, {
         position: cc.v2(_this2.player.x + _this2.stick.height, _this2.stick.y)
       }).call(function () {
-        cc.tween(_this2.stick).to(0.5, {
-          rotation: 180
+        cc.tween(_this2.stick).to(0.4, {
+          angle: -180
         }).start();
       }).call(function () {
-        cc.tween(_this2.player).by(0.5, {
+        cc.tween(_this2.player).by(0.3, {
           position: cc.v2(0, -350)
         }).delay(1).call(function () {
           return cc.director.loadScene('game');
@@ -168,15 +174,21 @@ cc.Class({
   },
   spawnNewGround: function spawnNewGround() {
     var newGround = cc.instantiate(this.newGroundPrefab);
+    newGround.x = 500;
+    newGround.y = this.ground.y;
     this.node.addChild(newGround);
     var newRedPoint = this.spawnRedPoint();
     newGround.addChild(newRedPoint);
     newRedPoint.y = this.ground.height / 2 - newRedPoint.height / 2;
     var minWidthNewGround = 30;
     var maxWidthNewGround = 150;
+    var newGroundPos = this.getNewGroundPosition(newGround.width);
     newGround.width = this.randomInteger(minWidthNewGround, maxWidthNewGround);
-    newGround.setPosition(this.getNewGroundPosition(newGround.width));
-    this.playerDestination = newGround.x + newGround.width / 2 - 20;
+    this.playerDestination = newGroundPos.x + newGround.width / 2 - 20;
+    var time = this.getTime(newGround.x - newGroundPos.x, 1000);
+    cc.tween(newGround).to(time, {
+      position: newGroundPos
+    }).start();
     return newGround;
   },
   getNewGroundPosition: function getNewGroundPosition(newGroundWidth) {

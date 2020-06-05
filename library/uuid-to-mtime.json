@@ -490,8 +490,8 @@
     "relativePath": "migration\\use_v2.0.x_cc.Toggle_event.js"
   },
   "07ae3cd5-7fa1-4f25-8372-63adeab8800e": {
-    "asset": 1591308898305,
-    "meta": 1591308898313,
+    "asset": 1591355332439,
+    "meta": 1591355332446,
     "relativePath": "game.fire"
   },
   "7e784ca4-15f2-4a7e-89d4-c2d4b94e1c8a": {
@@ -554,11 +554,6 @@
     "meta": 1591306833568,
     "relativePath": "scripts\\Stick.js"
   },
-  "060ec70f-da8f-4fc1-8127-6f8a6f1148e4": {
-    "asset": 1591312610884,
-    "meta": 1591312612556,
-    "relativePath": "scripts\\Game.js"
-  },
   "863dd078-63df-4106-b2d1-5a144d523641": {
     "asset": 1591312575928,
     "meta": 1591312612563,
@@ -573,5 +568,10 @@
     "asset": 1591312555993,
     "meta": 1591312612575,
     "relativePath": "scripts\\RedPoint.js"
+  },
+  "060ec70f-da8f-4fc1-8127-6f8a6f1148e4": {
+    "asset": 1591355314689,
+    "meta": 1591355316817,
+    "relativePath": "scripts\\Game.js"
   }
 }
