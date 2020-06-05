@@ -6,10 +6,10 @@ cc._RF.push(module, '33633JGEk9C8LC2uD/cQICA', 'RedPoint');
 
 cc.Class({
   "extends": cc.Component,
-  properties: {},
-  // LIFE-CYCLE CALLBACKS:
+  properties: {} // LIFE-CYCLE CALLBACKS:
   // onLoad () {},
-  start: function start() {} // update (dt) {},
+  //start() {},
+  // update (dt) {},
 
 });
 

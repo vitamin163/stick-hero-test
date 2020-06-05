@@ -30,6 +30,14 @@ cc.Class({
             default: null,
             type: cc.Label
         },
+        gameoverDisplay: {
+            default: null,
+            type: cc.Label
+        },
+        perfectDisplay: {
+            default: null,
+            type: cc.Label
+        },
         playerDestination: 'none',
         isMoving: false,
         touchStart: false,
@@ -44,9 +52,10 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        this.gameoverDisplay.enabled = false;
+        this.perfectDisplay.enabled = false;
         this.stick = this.spawnStick();
         this.newGround = this.spawnNewGround();
-        this.player.getComponent('Player').game = this;
         this.score = 0;
     },
 
@@ -89,6 +98,7 @@ cc.Class({
             this.score += 1;
         } else if (isPerfect) {
             this.score += 2;
+            this.perfect = true;
         }
         return isCollision;
     },
@@ -103,8 +113,11 @@ cc.Class({
         const comebackTime = this.getTime(this.newGround.x - this.startPosition);
         cc.tween(this.stick).delay(0.3).to(0.4, { angle: -90 })
             .call(() => {
+                this.perfectDisplay.enabled = this.perfect;
                 cc.tween(this.player).to(playerMoveTime, { position: cc.v2(this.playerDestination, this.stick.y) })
                     .call(() => {
+                        this.perfect = false;
+                        this.perfectDisplay.enabled = false;
                         cc.tween(this.newGround)
                             .to(comebackTime, { position: cc.v2(this.startPosition, this.ground.y) })
                             .start()
@@ -122,22 +135,19 @@ cc.Class({
                     .call(() => {
                         cc.tween(this.ground)
                             .to(comebackTime, { position: cc.v2(-800, this.ground.y) })
-                            .call(() => this.ground.destroy())
-                            .call(() => this.ground = this.newGround)
                             .call(() => {
+                                this.ground.destroy();
+                                this.ground = this.newGround;
                                 this.stick.active = false;
                                 this.stick = this.spawnStick();
                                 this.newGround = this.spawnNewGround();
                                 this.node.once(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
                                 this.node.once(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
-                            })
-                            .start()
-                    })
-                    .start()
+                            }).start()
+                    }).start()
             })
             .call(() => this.setScore()).start()
             .start();
-
     },
 
     failAction() {
@@ -148,12 +158,11 @@ cc.Class({
                     .call(() => { cc.tween(this.stick).to(0.4, { angle: -180 }).start() })
                     .call(() => {
                         cc.tween(this.player).by(0.3, { position: cc.v2(0, -350) })
-                            .delay(1).call(() => cc.director.loadScene('game')).start()
-                    })
-
-                    .start()
-            })
-            .start();
+                            .call(() => this.gameoverDisplay.enabled = true)
+                            .delay(1)
+                            .call(() => cc.director.loadScene('game')).start()
+                    }).start()
+            }).start();
     },
 
     randomInteger(min, max) {
@@ -203,12 +212,7 @@ cc.Class({
     },
 
 
+    //start() {},
 
-    start() {
-
-    },
-
-    update(dt) {
-
-    },
+    //update(dt) {},
 });

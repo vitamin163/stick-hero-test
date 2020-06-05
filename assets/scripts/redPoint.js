@@ -7,9 +7,7 @@ cc.Class({
 
     // onLoad () {},
 
-    start() {
-
-    },
+    //start() {},
 
     // update (dt) {},
 });

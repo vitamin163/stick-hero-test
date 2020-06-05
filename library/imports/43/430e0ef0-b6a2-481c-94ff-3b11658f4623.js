@@ -7,8 +7,8 @@ cc._RF.push(module, '430e07wtqJIHJT/OxFlj0Yj', 'Player');
 cc.Class({
   "extends": cc.Component,
   properties: {},
-  onLoad: function onLoad() {},
-  update: function update(dt) {}
+  onLoad: function onLoad() {} //update: function (dt) { }
+
 });
 
 cc._RF.pop();

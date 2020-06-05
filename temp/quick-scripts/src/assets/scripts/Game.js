@@ -31,6 +31,14 @@ cc.Class({
       "default": null,
       type: cc.Label
     },
+    gameoverDisplay: {
+      "default": null,
+      type: cc.Label
+    },
+    perfectDisplay: {
+      "default": null,
+      type: cc.Label
+    },
     playerDestination: 'none',
     isMoving: false,
     touchStart: false,
@@ -43,9 +51,10 @@ cc.Class({
   },
   // LIFE-CYCLE CALLBACKS:
   onLoad: function onLoad() {
+    this.gameoverDisplay.enabled = false;
+    this.perfectDisplay.enabled = false;
     this.stick = this.spawnStick();
     this.newGround = this.spawnNewGround();
-    this.player.getComponent('Player').game = this;
     this.score = 0;
   },
   onEnable: function onEnable() {
@@ -82,6 +91,7 @@ cc.Class({
       this.score += 1;
     } else if (isPerfect) {
       this.score += 2;
+      this.perfect = true;
     }
 
     return isCollision;
@@ -99,9 +109,12 @@ cc.Class({
     cc.tween(this.stick).delay(0.3).to(0.4, {
       angle: -90
     }).call(function () {
+      _this.perfectDisplay.enabled = _this.perfect;
       cc.tween(_this.player).to(playerMoveTime, {
         position: cc.v2(_this.playerDestination, _this.stick.y)
       }).call(function () {
+        _this.perfect = false;
+        _this.perfectDisplay.enabled = false;
         cc.tween(_this.newGround).to(comebackTime, {
           position: cc.v2(_this.startPosition, _this.ground.y)
         }).start();
@@ -117,10 +130,9 @@ cc.Class({
         cc.tween(_this.ground).to(comebackTime, {
           position: cc.v2(-800, _this.ground.y)
         }).call(function () {
-          return _this.ground.destroy();
-        }).call(function () {
-          return _this.ground = _this.newGround;
-        }).call(function () {
+          _this.ground.destroy();
+
+          _this.ground = _this.newGround;
           _this.stick.active = false;
           _this.stick = _this.spawnStick();
           _this.newGround = _this.spawnNewGround();
@@ -150,6 +162,8 @@ cc.Class({
       }).call(function () {
         cc.tween(_this2.player).by(0.3, {
           position: cc.v2(0, -350)
+        }).call(function () {
+          return _this2.gameoverDisplay.enabled = true;
         }).delay(1).call(function () {
           return cc.director.loadScene('game');
         }).start();
@@ -197,9 +211,9 @@ cc.Class({
     var maxX = this.node.width / 2 - newGroundWidth / 2;
     var randX = this.randomInteger(minX, maxX);
     return cc.v2(randX, groundY);
-  },
-  start: function start() {},
-  update: function update(dt) {}
+  } //start() {},
+  //update(dt) {},
+
 });
 
 cc._RF.pop();
