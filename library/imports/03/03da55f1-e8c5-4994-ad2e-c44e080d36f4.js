@@ -4,12 +4,11 @@ cc._RF.push(module, '03da5Xx6MVJlK0uxE4IDTb0', 'Stick');
 
 "use strict";
 
+/* eslint-disable no-undef */
 cc.Class({
   "extends": cc.Component,
   properties: {},
-  //onLoad() {},
-  //start() {},
-  update: function update(dt) {
+  update: function update() {
     if (this.game.touchStart) {
       this.node.height += 2;
     }

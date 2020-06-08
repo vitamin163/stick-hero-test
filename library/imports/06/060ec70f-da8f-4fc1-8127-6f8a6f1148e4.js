@@ -4,6 +4,7 @@ cc._RF.push(module, '060eccP2o9PwYEnb4pvEUjk', 'Game');
 
 "use strict";
 
+/* eslint-disable no-undef */
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -49,7 +50,6 @@ cc.Class({
     beyond: -500,
     startPosition: -300
   },
-  // LIFE-CYCLE CALLBACKS:
   onLoad: function onLoad() {
     this.gameoverDisplay.enabled = false;
     this.perfectDisplay.enabled = false;
@@ -76,7 +76,7 @@ cc.Class({
     }
   },
   setScore: function setScore() {
-    this.scoreDisplay.string = 'Score: ' + this.score;
+    this.scoreDisplay.string = "Score: ".concat(this.score);
   },
   calculateCollision: function calculateCollision() {
     var startCollisionPoint = this.newGround.x - this.newGround.width / 2;
@@ -163,7 +163,7 @@ cc.Class({
         cc.tween(_this2.player).by(0.3, {
           position: cc.v2(0, -350)
         }).call(function () {
-          return _this2.gameoverDisplay.enabled = true;
+          _this2.gameoverDisplay.enabled = true;
         }).delay(1).call(function () {
           return cc.director.loadScene('game');
         }).start();
@@ -211,9 +211,7 @@ cc.Class({
     var maxX = this.node.width / 2 - newGroundWidth / 2;
     var randX = this.randomInteger(minX, maxX);
     return cc.v2(randX, groundY);
-  } //start() {},
-  //update(dt) {},
-
+  }
 });
 
 cc._RF.pop();

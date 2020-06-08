@@ -1,16 +1,12 @@
+/* eslint-disable no-undef */
 cc.Class({
-    extends: cc.Component,
+  extends: cc.Component,
 
-    properties: {},
+  properties: {},
 
-    //onLoad() {},
-
-    //start() {},
-
-    update(dt) {
-        if (this.game.touchStart) {
-            this.node.height += 2;
-        }
-    },
+  update() {
+    if (this.game.touchStart) {
+      this.node.height += 2;
+    }
+  },
 });
-

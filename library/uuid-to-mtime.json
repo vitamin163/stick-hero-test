@@ -515,7 +515,7 @@
     "relativePath": "textures\\Player.png"
   },
   "1b9d665f-a2cd-444f-9a3e-40649a66d014": {
-    "asset": 1590933898350,
+    "asset": 1591615660000,
     "meta": 1590849625204,
     "relativePath": "scripts"
   },
@@ -550,28 +550,28 @@
     "relativePath": "stick.prefab"
   },
   "863dd078-63df-4106-b2d1-5a144d523641": {
-    "asset": 1591312575928,
-    "meta": 1591312612563,
+    "asset": 1591615520000,
+    "meta": 1591616200179,
     "relativePath": "scripts\\NewGround.js"
   },
   "430e0ef0-b6a2-481c-94ff-3b11658f4623": {
-    "asset": 1591356602298,
-    "meta": 1591356629218,
+    "asset": 1591615502000,
+    "meta": 1591616200184,
     "relativePath": "scripts\\Player.js"
   },
   "33633246-124f-42f0-b0b6-b83fdc408080": {
-    "asset": 1591356627874,
-    "meta": 1591356629223,
+    "asset": 1591615492000,
+    "meta": 1591616200184,
     "relativePath": "scripts\\RedPoint.js"
   },
   "03da55f1-e8c5-4994-ad2e-c44e080d36f4": {
-    "asset": 1591356616808,
-    "meta": 1591356629228,
+    "asset": 1591615482000,
+    "meta": 1591616200190,
     "relativePath": "scripts\\Stick.js"
   },
   "060ec70f-da8f-4fc1-8127-6f8a6f1148e4": {
-    "asset": 1591362300060,
-    "meta": 1591362904284,
+    "asset": 1591616449221,
+    "meta": 1591616490608,
     "relativePath": "scripts\\Game.js"
   }
 }

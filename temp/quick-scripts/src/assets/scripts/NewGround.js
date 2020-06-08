@@ -4,13 +4,10 @@ cc._RF.push(module, '863ddB4Y99BBrLRWhRNUjZB', 'NewGround');
 
 "use strict";
 
+/* eslint-disable no-undef */
 cc.Class({
   "extends": cc.Component,
-  properties: {},
-  // LIFE-CYCLE CALLBACKS:
-  onLoad: function onLoad() {},
-  start: function start() {} //update(dt) {},
-
+  properties: {}
 });
 
 cc._RF.pop();

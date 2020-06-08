@@ -1,19 +1,7 @@
+/* eslint-disable no-undef */
 cc.Class({
-    extends: cc.Component,
+  extends: cc.Component,
 
-    properties: {},
+  properties: {},
 
-
-    // LIFE-CYCLE CALLBACKS:
-
-    onLoad() {
-
-    },
-
-
-    start() {
-
-    },
-
-    //update(dt) {},
 });

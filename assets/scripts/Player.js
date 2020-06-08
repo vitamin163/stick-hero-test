@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 cc.Class({
-    extends: cc.Component,
+  extends: cc.Component,
 
-    properties: {},
+  properties: {},
 
-    onLoad: function () { },
+  onLoad() { },
 
-    //update: function (dt) { }
 });

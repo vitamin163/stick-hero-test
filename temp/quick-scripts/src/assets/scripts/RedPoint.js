@@ -4,13 +4,10 @@ cc._RF.push(module, '33633JGEk9C8LC2uD/cQICA', 'RedPoint');
 
 "use strict";
 
+/* eslint-disable no-undef */
 cc.Class({
   "extends": cc.Component,
-  properties: {} // LIFE-CYCLE CALLBACKS:
-  // onLoad () {},
-  //start() {},
-  // update (dt) {},
-
+  properties: {}
 });
 
 cc._RF.pop();
