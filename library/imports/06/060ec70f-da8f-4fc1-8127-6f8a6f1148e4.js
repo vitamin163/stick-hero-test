@@ -66,6 +66,7 @@ cc.Class({
     this.touchEnd = false;
   },
   onTouchEnd: function onTouchEnd() {
+    this.node.off(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
     this.touchStart = false;
     this.touchEnd = true;
 

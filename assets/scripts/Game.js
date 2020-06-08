@@ -71,6 +71,7 @@ cc.Class({
 
 
   onTouchEnd() {
+    this.node.off(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
     this.touchStart = false;
     this.touchEnd = true;
     if (this.calculateCollision()) {
@@ -155,12 +156,12 @@ cc.Class({
                 this.newGround = this.spawnNewGround();
                 this.node.once(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
                 this.node.once(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
-              }).start();
+              })
+              .start();
           })
           .start();
       })
-      .call(() => this.setScore())
-      .start()
+      .call(() => this.setScore()).start()
       .start();
   },
 
